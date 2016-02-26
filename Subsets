@@ -1,0 +1,25 @@
+class Solution {
+public:
+    /**
+     * @param S: A set of numbers.
+     * @return: A list of lists. All valid subsets.
+     */
+    vector<vector<int> > subsets(vector<int> &nums ) {
+    	vector<vector<int> > ans  = {{}};
+    	for (auto i = nums.begin(); i < nums.end(); i++) {
+    	    vector<vector<int>> ansCopy = ans;
+    	    addOneElement(*i, ansCopy);
+    	    ans.insert(ans.end(), ansCopy.begin(), ansCopy.end());
+    	}
+    	return ans;
+    }
+    void addOneElement(int num, vector<vector<int> > &vec){
+        if (vec.empty()) {
+            vec.push_back({num});
+        } else {
+            for (auto j = vec.begin(); j < vec.end(); j++) {
+            j->push_back(num);
+            }
+        }
+    }
+};
